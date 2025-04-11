@@ -14,7 +14,7 @@ export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/login" element={token ? <Navigate to="/dashboard" /> : <Login setToken={setToken} />} />
+        <Route path="/login" element={token ? <Navigate to="/dashboard" /> : <Login  />} />
         <Route path="/signup" element={token ? <Navigate to="/login" /> : <Signup />} />
         <Route path="/dashboard" element={token ? <Dashboard token={token} /> : <Navigate to="/login" />} />
         <Route path="*" element={<Navigate to={token ? "/dashboard" : "/login"} />} />

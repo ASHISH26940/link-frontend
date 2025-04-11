@@ -1,7 +1,7 @@
 import { AuthForm } from "../components/AuthForm"
 import { useNavigate } from "react-router-dom"
 
-export default function Login({ setToken }: { setToken: (t: string) => void }) {
+export default function Login() {
   const navigate = useNavigate()
 
   return (

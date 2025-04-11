@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { createLink, getLinks } from "../lib/api"
+import {  getLinks } from "../lib/api"
 import axios from "axios";
 export default function Dashboard({ token }: { token: string }) {
   const [originalUrl, setOriginalUrl] = useState("")
@@ -15,7 +15,7 @@ export default function Dashboard({ token }: { token: string }) {
   const handleCreate = async () => {
     console.log("Creating link:", originalUrl, customAlias, expiresAt);
     
-    const res=await axios.post("http://localhost:3000/create-link",{
+    const res=await axios.post("https://link-backend-ih8b.onrender.com/create-link",{
         originalUrl,
         customAlias,
         expiresAt
@@ -71,11 +71,11 @@ export default function Dashboard({ token }: { token: string }) {
           <div key={link._id} className="bg-gray-800 p-3 rounded">
             <p>{link.originalUrl}</p>
             <a
-              href={`http://localhost:3000/${link.shortId}`}
+              href={`https://link-backend-ih8b.onrender.com/${link.shortId}`}
               target="_blank"
               className="text-blue-400 underline"
             >
-              {`http://localhost:3000/${link.shortId}`}
+              {`https://link-backend-ih8b.onrender.com/${link.shortId}`}
             </a>
             <p className="text-sm text-gray-400">Clicks: {link.clicks}</p>
             {link.expiresAt && (
