@@ -5,17 +5,23 @@ import Signup from "./pages/Signup"
 import Dashboard from "./pages/Dashboard"
 
 export default function App() {
-  const [token, setToken] = useState<string | null>(localStorage.getItem("token"))
+  const [token, setToken] = useState<string | null>(null)
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    setToken(localStorage.getItem("token"))
+    const savedToken = localStorage.getItem("token")
+    setToken(savedToken)
+    setLoading(false)
   }, [])
+
+  if (loading) return null
 
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/login" element={token ? <Navigate to="/dashboard" /> : <Login  />} />
-        <Route path="/signup" element={token ? <Navigate to="/login" /> : <Signup />} />
+        <Route path="/" element={<Navigate to={token ? "/dashboard" : "/login"} />} />
+        <Route path="/login" element={token ? <Navigate to="/dashboard" /> : <Login />} />
+        <Route path="/signup" element={token ? <Navigate to="/dashboard" /> : <Signup />} />
         <Route path="/dashboard" element={token ? <Dashboard token={token} /> : <Navigate to="/login" />} />
         <Route path="*" element={<Navigate to={token ? "/dashboard" : "/login"} />} />
       </Routes>
