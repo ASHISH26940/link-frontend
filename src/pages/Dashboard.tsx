@@ -24,7 +24,7 @@ export default function Dashboard({ token }: { token: string }) {
             Authorization: `Bearer ${token}`,
         }
     });
-    console.log("Link created:", res.data);
+    console.log("Link created:", res);
     
     setOriginalUrl("")
     setCustomAlias("")
